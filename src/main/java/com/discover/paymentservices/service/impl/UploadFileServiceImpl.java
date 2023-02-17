@@ -13,28 +13,26 @@ public class UploadFileServiceImpl implements UploadFileService {
 
 	@Override
 	public String uploadFile(MultipartFile file) throws IOException, ScanFailedException {
-		
+
 		byte[] fileInBytes = file.getBytes();
 		String fileName = file.getName();
-		Object config = null;
-		
-		
-		String scanResult = invokeScanService(fileInBytes, fileName, null);
-		
-		if(!scanResult.equalsIgnoreCase("")) {
-			return saveDocument(fileName, scanResult, config, fileInBytes);
-		}else {
+
+		String scanResult = invokeScanService(fileInBytes, fileName);
+
+		if (!scanResult.equalsIgnoreCase("")) {
+			return saveDocument(fileName, scanResult, fileInBytes);
+		} else {
 			throw new ScanFailedException();
 		}
-		
+
 	}
-	
-	private String invokeScanService(byte[] fileInBytes, String fileName, Object object) {
+
+	private String invokeScanService(byte[] fileInBytes, String fileName) {
 		// Invoke Scan Service
 		return null;
 	}
-	
-	private String saveDocument(String fileName, String scanResult, Object config, byte[] fileInBytes) {
+
+	private String saveDocument(String fileName, String scanResult, byte[] fileInBytes) {
 		// call wrapper to get the document Id
 		return null;
 	}

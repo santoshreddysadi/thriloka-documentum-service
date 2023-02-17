@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.discover.paymentservices.model.DownloadFileResponse;
 import com.discover.paymentservices.model.UploadFileResponse;
+import com.discover.paymentservices.service.DownloadFileService;
 import com.discover.paymentservices.service.UploadFileService;
 
 @RestController
@@ -19,6 +20,9 @@ public class DocumentumScanController {
 
 	@Autowired
 	UploadFileService uploadFileService;
+
+	@Autowired
+	DownloadFileService downloadFileService;
 
 	@PostMapping("/uploadToDocumentum")
 	public ResponseEntity<UploadFileResponse> uploadDocument(@RequestParam MultipartFile file) throws IOException {
