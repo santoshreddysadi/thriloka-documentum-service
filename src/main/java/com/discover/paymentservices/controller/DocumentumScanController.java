@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.discover.paymentservices.exception.ScanFailedException;
 import com.discover.paymentservices.model.DownloadFileResponse;
 import com.discover.paymentservices.model.UploadFileResponse;
 import com.discover.paymentservices.service.DownloadFileService;
@@ -25,8 +26,9 @@ public class DocumentumScanController {
 	DownloadFileService downloadFileService;
 
 	@PostMapping("/uploadToDocumentum")
-	public ResponseEntity<UploadFileResponse> uploadDocument(@RequestParam MultipartFile file) throws IOException {
-
+	public ResponseEntity<UploadFileResponse> uploadDocument(@RequestParam MultipartFile file)
+			throws IOException, ScanFailedException {
+		uploadFileService.uploadFile(file);
 		return null;
 
 	}
